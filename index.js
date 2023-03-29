@@ -85,10 +85,11 @@ app.post('/api/v1/audio', async (req, res) => {
 
 app.get('/api/v1/image-stream', async (req, res) => {
 
-    res.setHeader('Content-Type', 'text/event-stream');
     res.writeHead(200, {
         'Content-Type': 'text/event-stream',
-    })
+        "Access-Control-Allow-Origin": "*",
+    });
+    
     emitter.on('images_received', (data) => {
         console.log(data);
         res.write(`data: ${data}\n\n`);
@@ -126,7 +127,11 @@ app.get('/api/v1/image-stream', async (req, res) => {
 
 app.get('/api/v1/audio-stream', async (req, res) => {
     
-    res.setHeader('Content-Type', 'text/event-stream');
+    res.writeHead(200, {
+        'Content-Type': 'text/event-stream',
+        "Access-Control-Allow-Origin": "*",
+    });
+
     emitter.on('audio_received', (data) => {
         console.log(data);
         res.write(`data: ${data}\n\n`);
