@@ -43,8 +43,6 @@ app.post('/api/v1/image', async (req, res) => {
         return;
     }
 
-    // console.log(story)
-
     try {
         const response = await AWS.sendQueueMessage(
             config.IMAGE_OUTGOING_MESSAGE_QUEUE_NAME,
@@ -68,8 +66,6 @@ app.post('/api/v1/audio', async (req, res) => {
         });
         return;
     }
-
-    // console.log(story)
 
     try {
         const response = await AWS.sendQueueMessage(
