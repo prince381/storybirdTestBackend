@@ -1,0 +1,23 @@
+{
+  "name": "storybirdtest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.1345.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "endent": "^2.1.0",
+    "express": "^4.18.2",
+    "sqs-consumer": "^7.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
