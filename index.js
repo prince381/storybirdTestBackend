@@ -8,7 +8,7 @@ const AWS = require('./lib/aws');
 
 const app = express();
 
-app.use(cors({
+const corsOptions = {
     origin: '*',
     methods: ['GET', 'POST'],
     preflightContinue: false,
@@ -21,8 +21,10 @@ app.use(cors({
         "Access-Control-Allow-Headers",
         "Accept",
     ],
-}));
+};
 
+app.options("*", cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 Environment.setup();
@@ -84,6 +86,9 @@ app.post('/api/v1/audio', async (req, res) => {
 app.get('/api/v1/image-stream', async (req, res) => {
 
     res.setHeader('Content-Type', 'text/event-stream');
+    res.writeHead(200, {
+        'Content-Type': 'text/event-stream',
+    })
     emitter.on('images_received', (data) => {
         console.log(data);
         res.write(`data: ${data}\n\n`);
